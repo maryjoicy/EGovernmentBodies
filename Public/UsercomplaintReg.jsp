@@ -28,33 +28,98 @@
     
     
         </script>
+        
+        <script src="jquery.min.js" type="text/javascript"></script>
+        <script>
+         function dtype(a)
+         {
+             $.ajax({url:"UserComGoverBodyAjax.jsp?id=" +a, success: function (result) {
+             $("#GB").html(result);              
+                  
+        }});
+         
+     }
+    
+    
+        </script>
+        
+        </script>
+        
+        <script src="jquery.min.js" type="text/javascript"></script>
+        <script>
+         function gbstype(a)
+         {
+             $.ajax({url:"GoverBodySecAjax.jsp?id=" +a, success: function (result) {
+             $("#GBS").html(result);              
+                  
+        }});
+         
+     }
+    
+    
+        </script>
        
     
     <body>
         
-        <h1 align="center"> Please register your complaints in our site..</h1>
+        <h1 align="center"> Please register your complaints..</h1>
       
         <form name="frmcomplaint" action="FileUpload.jsp">
             <table align="center">
-                
                 <tr>
-                    <th>Government Body:</th>
-                    <td> <select name="governbodies">
-                            <option value="g">--select--</option>
+                    <td>District</td>
+                    <td> <select name="dist" onchange="dtype(this.value)">
+                            <option value="dis">--select--</option>
                             <%
-                                String g ="select * from tbl_goverbodiestype";
-                                ResultSet rs = obj.selectData(g);
-                               while (rs.next())
+                                String dis ="select * from tbl_district";
+                                ResultSet rs2 = obj.selectData(dis);
+                               while (rs2.next())
                                {
                                    
                             %>
-                            <option value="<%=rs.getString("goverbodiestype_id")%>"><%=rs.getString("goverbodiestype_name")%></option>
+                            <option value="<%=rs2.getString("district_id")%>"><%=rs2.getString("district_name")%></option>
                                <%
                                }
                                 %>
                         </select></td></tr>
                 <tr>
-                    <th>Department:</th>
+                    <td>Government Body</td>
+                    <td> <select name="governbodies" id="GB" onchange="gbstype(this.value)">
+                            <option>--Select--</option>
+                            <%
+                               String gbody="select * from tbl_goverbodiestype";
+                               ResultSet rs22 = obj.selectData(gbody);
+                             while (rs22.next())
+                               {
+                                   
+                            %>
+                            <option value="<%=rs22.getString("goverbodiestype_id")%>"><%=rs22.getString("goverbodiestype_name")%></option>
+                               <%
+                               }
+                                %>
+                        </select></td></tr>
+                
+                 <tr>
+                    <td>Government section</td>
+                    <td> <select name="govbdysec" id="GBS">
+                            <option>--Select--</option>
+                            <%
+                               String gbs="select * from tbl_goverbody";
+                               ResultSet rs23 = obj.selectData(gbs);
+                             while (rs23.next())
+                               {
+                                   
+                            %>
+                            <option value="<%=rs23.getString("goverbody_id")%>"><%=rs23.getString("goverbody_name")%></option>
+                               <%
+                               }
+                                %>
+                        </select></td></tr>
+                
+                
+                
+                <tr>
+                    <td>Department</td>
                     <td><select name="depart" onchange="ctype(this.value)">
                             <option>--select--</option>
                             <%
@@ -71,26 +136,37 @@
                         </select></td>
                         
                 </tr>
-                <tr><th>Complaint Type</th>
+                <tr><td>Complaint Type</td>
                     <td><select name="complaint" id="tp">
                             <option>--Select--</option>
                         </select></td></tr>
                 
                 <tr>
-                    <th>Complaints:</th>
+                    <td>Complaints</td>
                 <td>
                 <textarea  name="txtname" placeholder="Please write your complaints!!" required=""></textarea>
            </td></tr>
            
-            <tr>
-                <th>Date:</th>
-                <td><input type="date" name="undate"> </td>
-            </tr>
+           
+                <tr>
+                    <td>Place</td>
+                <td>
+                    <input type="text"  name="txtplace"  required="">
+           </td></tr>
+                
+                <tr>
+                    <td>Location</td>
+                <td>
+                <textarea  name="txtloc" placeholder="..." required=""></textarea>
+           </td></tr>
+           
+           
            
                                 <tr><td colspan="2" align ="center">
                                     <input type ="submit" name="btnsubmit" value="Submit">
                                     <input type="submit" name="btncancel" value="Cancel">
-                              </td></tr>            
+                              </td></tr>  
+                                
             </table>
         </form>
        

@@ -28,6 +28,7 @@
             <h4 align="center"><a href="EditProfile.jsp">Edit Profile</a></h4>
             <h4 align="center"><a href="ChangePass.jsp">Change Password</a></h4>
             <h4 align="center"><a href="UsercomplaintReg.jsp">Complaint Registration</a></h4>
+            <h4 align="center"><a href="ComplaintStatus.jsp">Complaint status</a></h4>
              
        
             </form>

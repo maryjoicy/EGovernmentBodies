@@ -69,12 +69,7 @@
                            
                               </select></td>
                                  </tr>
-                                        <tr>
-                                            <th>
-                                                Complaint Description:</th>
-                                            <td> <textarea  required="" name="txtdesc"></textarea></td>
-                                            
-                                        </tr>
+                                        
                                         <tr><td colspan="2" align ="center">
                                     <input type ="submit" name="btnsubmit" value="Submit">
                                     <input type="reset" name="btnreset" value="Cancel">
@@ -87,7 +82,6 @@
             <tr>
                 <th> sl.no</th>
                 <th>Type of Complaints</th>
-                <th>Complaint description</th>
                 <th>Department</th>
                 
             </tr>
@@ -102,7 +96,6 @@
             <tr>
                 <td><%=i%></td>
                 <td><%=rs1.getString("complainttype_name")%></td>
-                <td><%=rs1.getString("complainttype_desc")%></td>
                 <td><%=rs1.getString("departmenttype_name")%></td>
                 <td><a href="ComplaintType.jsp?did=<%=comptypeid%>">Delete</a>
             </tr>

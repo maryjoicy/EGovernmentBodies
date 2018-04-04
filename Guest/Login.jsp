@@ -31,10 +31,11 @@
                 String sel1 = "select * from tbl_collector c inner join tbl_login l on c.login_id=l.login_id where l.login_username='"+UserName+"' and l.login_password='" +PassWord+"' and l.login_usertype='collector'";
                 String sel2 = "select * from tbl_goverbody g inner join tbl_login l on g.login_id =l.login_id where l.login_username='" + UserName + "' and l.login_password='" + PassWord + "' and l.login_usertype='Municipality'";
                 String sel3= "select * from tbl_goverbody g inner join tbl_login l on g.login_id =l.login_id where l.login_username='" + UserName + "' and l.login_password='" + PassWord + "' and l.login_usertype='Corporation'";
-                String sel4 = "select * from tbl_goverbody g inner join tbl_login l on g.login_id =l.login_id where l.login_username='" + UserName + "' andl. login_password='" + PassWord + "' and l.login_usertype='Taluk'";
-                String sel5 = "select * from tbl_departmenttype d inner join tbl_login l on d.login_id =l.login_id where l.login_username='" + UserName + "' and l.login_password='" + PassWord + "' and l.login_usertype='PWD'";
-                String sel6 = "select * from tbl_departmenttype d inner join tbl_login l on d.login_id =l.login_id where l.login_username='" + UserName + "' and l.login_password='" + PassWord + "' and l.login_usertype='Electricity Board'";
-                String sel7 = "select * from tbl_departmenttype d inner join tbl_login l on d.login_id =l.login_id where l.login_username='" + UserName + "' and l.login_password='" + PassWord + "' and l.login_usertype='Water Authority'";
+                String sel4 = "select * from tbl_goverbody g inner join tbl_login l on g.login_id =l.login_id where l.login_username='" + UserName + "' and l. login_password='" + PassWord + "' and l.login_usertype='Taluk'";
+                String sel5 = "select * from tbl_department d inner join tbl_login l on d.login_id =l.login_id where l.login_username='" + UserName + "' and l.login_password='" + PassWord + "' and l.login_usertype='PWD'";
+                String sel6 = "select * from tbl_department d inner join tbl_login l on d.login_id =l.login_id where l.login_username='" + UserName + "' and l.login_password='" + PassWord + "' and l.login_usertype='Electricity Board'";
+                String sel7 = "select * from tbl_department d inner join tbl_login l on d.login_id =l.login_id where l.login_username='" + UserName + "' and l.login_password='" + PassWord + "' and l.login_usertype='Water Authority'";
+                System.out.println(sel7);
                  String sel8 = "select * from tbl_user u inner join tbl_login l on u.login_id =l.login_id where l.login_username='" + UserName + "' and l.login_password='" + PassWord + "' and l.login_usertype='public' and u.user_status='1'";
                
                
@@ -59,27 +60,29 @@
                     response.sendRedirect("../Collector/HomePage.jsp");
             }
                 else if(rs2.next()){
-                    session.setAttribute("m", rs2.getString("goverbody_id"));
+                    session.setAttribute("gbdy", rs2.getString("goverbody_id"));
                     response.sendRedirect("../GovtBodies/HomePage.jsp");
                 }
                   else if(rs3.next()){
-                    session.setAttribute("Co", rs3.getString("goverbody_id"));
+                    session.setAttribute("gbdy", rs3.getString("goverbody_id"));
+                    
                     response.sendRedirect("../GovtBodies/HomePage.jsp");
                 }
                 else if(rs4.next()){
-                    session.setAttribute("t", rs4.getString("goverbody_id"));
+                    session.setAttribute("gbdy", rs4.getString("goverbody_id"));
+                    
                     response.sendRedirect("../GovtBodies/HomePage.jsp");
                 }
                 else if(rs5.next()){
-                    session.setAttribute("P", rs5.getString("department_id"));
+                    session.setAttribute("dep", rs5.getString("department_id"));
                     response.sendRedirect("../Department/HomePage.jsp");
                 }
                 else if(rs6.next()){
-                    session.setAttribute("E", rs6.getString("department_id"));
+                    session.setAttribute("dep", rs6.getString("department_id"));
                     response.sendRedirect("../Department/HomePage.jsp");
                 }
                 else if(rs7.next()){
-                    session.setAttribute("W", rs7.getString("department_id"));
+                    session.setAttribute("dep", rs7.getString("department_id"));
                     response.sendRedirect("../Department/HomePage.jsp");
                 }
                 else if(rs8.next()){

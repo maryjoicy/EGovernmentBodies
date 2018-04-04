@@ -19,7 +19,7 @@
         <title>UploadActioncomplaint</title>
     </head>
     <body>
-        <%
+         <%
             String field_name = "";
             FileItem f_item = null;
             String file_name = "";

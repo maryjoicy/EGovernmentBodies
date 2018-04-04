@@ -10,13 +10,28 @@
 <!DOCTYPE html>
 <html>
     <head>
+         <script src="jquery.min.js" type="text/javascript"></script>
+        <script>
+         function ctype(a)
+         {
+             $.ajax({url:"GovernBodyAjax.jsp?id=" +a, success: function (result) {
+             $("#tp").html(result);              
+                  
+        }});
+         
+     }
+    
+    
+        </script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>GovernmentBodies</title>
     </head>
+   
+   
+       
     <body>
         <%
              String GovernID="";
-             
              String GovernTypeID="";
              String DistID="";
              String DepartID="";
@@ -81,48 +96,8 @@
             <form name="frmgovernbody">
                 <table align ="center">
                     <tr>
-                        <th> Name:</th>
-                        <td><input type="text" value="" required="" name="txtgvernbodyname" placeholder="enter the name"></td> 
-                    </tr>
-                    <tr>
-                        <th> Username:</th>
-                        <td><input type="text" value="" required="" name="txtuname"></td> 
-                    </tr>
-                    <tr>
-                        <th> Password:</th>
-                        <td> <input type="password" name="pwd"></td>
-                    </tr>
-                   
-                    
-                    <tr><th> Government Body:</th>
-                        <td> <select name="governbody">
-                                <option value="g">--select--</option>
-                                <%
-                                String g="select * from tbl_goverbodiestype";
-                                ResultSet rs1=obj.selectData(g);
-                                while (rs1.next())
-                                {
-                                %>
-                                <option value="<%=rs1.getString("goverbodiestype_id")%>"><%=rs1.getString("goverbodiestype_name")%></option>
-                                <%
-                                }
-                                %>
-                            </select></td></tr>
-                    
-                   
-                    
-                    <tr>
-                        <th>
-                            Address:</th>
-                        <td> <textarea name="txtaddress"></textarea></td>
-                    </tr>
-                    
-                    
-                    
-                    
-                    <tr>
                         <th>District:</th>
-                        <td><select name="dist">
+                        <td><select name="dist" onchange="ctype(this.value)" >
                                 <option value="d">--select--</option>
                                 <%
              String d="select * from tbl_district";
@@ -138,6 +113,38 @@
                               %>
                             </select></td>
                     </tr>
+                   
+                   
+                    
+                    <tr><th> Government Body:</th>
+                        <td><select name="governbody" id="tp">
+                            <option>--Select--</option>
+                        </select></td></tr>
+                    
+                    
+                    <tr>
+                        <th> Name:</th>
+                        <td><input type="text" value="" required="" name="txtgvernbodyname" placeholder="enter the name"></td> 
+                    </tr>
+                    <tr>
+                        <th> Username:</th>
+                        <td><input type="text" value="" required="" name="txtuname"></td> 
+                    </tr>
+                    <tr>
+                        <th> Password:</th>
+                        <td> <input type="password" name="pwd"></td>
+                    </tr>
+                    
+                    <tr>
+                        <th>
+                            Address:</th>
+                        <td> <textarea name="txtaddress"></textarea></td>
+                    </tr>
+                    
+                    
+                    
+                    
+                    
                     <tr>
                         <th>Phone:</th>
                         <td><input type="text" name="txtnumber"></td>
@@ -160,30 +167,31 @@
                                     sl.no
                                 </th>
                                 
+                                
                                 <th>
-                                    Name:
-                                   
+                                    District
                                 </th>
+                                
                                 <th>
-                                    Address:
-                                   
-                                </th>
-                                <th>
-                                    Government Body:
+                                    Government Body
                                     
                                    
                                 </th>
-                                
-                                 
                                 <th>
-                                    District:
+                                    Name
                                    
                                 </th>
                                 <th>
-                                    Phone:
+                                    Address
+                                   
+                                </th>
+                                
+                                
+                                <th>
+                                    Phone
                                    
                                 </th><th>
-                                    Email:</th>
+                                    Email</th>
                                    </tr>
                             
                <%
@@ -198,13 +206,12 @@
                   %>
                   <tr>
                       <td><%=i%></td>
+                      <td><%=rs4.getString("district_name")%></td>
+                       <td><%=rs4.getString("goverbodiestype_name")%></td>
                       <td><%=rs4.getString("goverbody_name")%></td>
                       <td><%=rs4.getString("goverbody_address")%></td>
-                      <td><%=rs4.getString("goverbodiestype_name")%></td>
-                      <td><%=rs4.getString("district_name")%></td>
-                      
+                     
                       <td><%=rs4.getString("goverbody_phone")%></td>
-                      
                       
                       <td><%=rs4.getString("goverbody_email")%></td>
                       

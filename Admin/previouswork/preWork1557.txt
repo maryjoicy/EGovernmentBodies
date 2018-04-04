@@ -1,0 +1,14 @@
+String insQry = "insert into tbl_login(login_username,login_password,login_usertype)values('" +value[1]+ "','" +value[2]+ "','contractors')";
+                boolean b1 = obj.ExecuteCommand(insQry);
+                if (b1)
+                {
+                    String loginid="";
+                     String sel = "select max(login_id) as login from tbl_login";
+                ResultSet rs = obj.selectData(sel);
+                if (rs.next()) {
+                    loginid = rs.getString("login");
+                }
+                String insQry1 = "insert into tbl_contractor(contractor_name,contractor_address,date,district_id,place,phone,departmenttype_id,adharproof,previouswork,login_id)"
+                        + " values ('" +value[0]+ "','" + value[3] + "','" + value[4]+ "','" +value[5]+ "','" +value[6]+ "','" +value[7]+ "','"+fn+"','"+pn+"','" +loginid + "')";
+               
+        out.println(insQry1);

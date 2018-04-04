@@ -62,7 +62,7 @@
                 UserName=request.getParameter("txtuname");
                 loginid=request.getParameter("hid");
                 
-                
+              
                     String up="update tbl_user set user_phone='"+Phone+"',user_email='"+Email+"',user_address='"+Add+"',place='"+Place+"' where user_id='"+session.getAttribute("user")+"'";
                    // out.println(up);
                     boolean b=obj.ExecuteCommand(up);

@@ -27,8 +27,13 @@
             String LogID = "";
 
             if (request.getParameter("did") != null) {
-                String del = "delete from tbl_department where department_id='" + request.getParameter("did") + "'";
-                obj.ExecuteCommand(del);
+                String del = "delete from tbl_collector where collector_id='" + request.getParameter("did") + "'";
+                boolean b = obj.ExecuteCommand(del);
+                if (b) {
+                    response.sendRedirect("Collectors.jsp");
+                } else {
+                    out.println(del);
+                }
             }
             if (request.getParameter("btnsubmit") != null) {
                 CollName = request.getParameter("txtcollname");
@@ -61,20 +66,6 @@
         <form name="frmdepartment">
             <table align ="center">
                 <tr>
-                    <th> Name:</th>
-                    <td><input type="text" value="" required="" name="txtcollname" placeholder="enter the name"></td>
-                </tr>
-                
-                <tr>
-                        <th> Username:</th>
-                        <td><input type="text" value="" required="" name="txtuname"></td> 
-                    </tr>
-                <tr>
-                    <th> Password: </th>
-                    <td><input type="password" name="txtcomppass"></td>
-                </tr>
-
-                <tr>
                     <th>District:</th>
                     <td> <select name="dist">
 
@@ -91,6 +82,21 @@
                             %>
                         </select></td>
                 </tr>
+                <tr>
+                    <th> Name:</th>
+                    <td><input type="text" value="" required="" name="txtcollname" placeholder="enter the name"></td>
+                </tr>
+                
+                <tr>
+                        <th> Username:</th>
+                        <td><input type="text" value="" required="" name="txtuname"></td> 
+                    </tr>
+                <tr>
+                    <th> Password: </th>
+                    <td><input type="password" name="txtcomppass"></td>
+                </tr>
+
+                
                 <tr>
                     <th>Address: </th>
                     <td><textarea name="txtaddress"></textarea></td>
@@ -114,12 +120,14 @@
                     <th>
                         sl.no
                     </th>
-                    <th>Name:</th>
-
                     <th>
                         District
 
                     </th>
+                    
+                    <th>Name:</th>
+
+                    
 
                     <th>
                         Address:
@@ -143,13 +151,13 @@
 
                 <tr>
                     <td><%=i%></td>
-                    <td><%=rs4.getString("collector_name")%></td>
                     <td><%=rs4.getString("district_name")%></td>
+                    <td><%=rs4.getString("collector_name")%></td>
                     <td><%=rs4.getString("collector_address")%></td>
                     <td><%=rs4.getString("collector_phone")%></td>
                     <td><%=rs4.getString("collector_email")%></td>
 
-                    <td><a href="collector.jsp?did=<%=collectId%>">Delete</a></td>
+                    <td><a href="Collectors.jsp?did=<%=collectId%>">Delete</a></td>
                 </tr>
                 <%
                         i++;
